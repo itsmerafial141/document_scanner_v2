@@ -247,13 +247,6 @@ class CameraScannerState extends State<CameraScanner> {
           onPressed: _onTakePictureButtonPressed,
           child: const Icon(Icons.camera_outlined, color: Colors.white),
         ),
-        // const SizedBox(width: 16),
-        // FloatingActionButton(
-        //   heroTag: "gallery",
-        //   foregroundColor: Colors.white,
-        //   onPressed: _onGalleryButtonPressed,
-        //   child: const Icon(Icons.image),
-        // ),
       ],
     );
   }
@@ -311,13 +304,10 @@ class CameraScannerState extends State<CameraScanner> {
       edgeDetectionResult,
     );
     if (result == false) return;
-    // Get.back();
     setState(() {
       imageCache.clearLiveImages();
       imageCache.clear();
       croppedImagePath = imagePath;
-      // docFormC.setFileByDocType(widget.docType, croppedImagePath);
-      // docFormC.processedImage(widget.docType);
     });
   }
 
@@ -328,16 +318,6 @@ class CameraScannerState extends State<CameraScanner> {
 
     await _detectEdges(filePath);
   }
-
-  // void _onGalleryButtonPressed() async {
-  //   ImagePicker picker = ImagePicker();
-  //   XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  //   final filePath = pickedFile!.path;
-
-  //   log('Picture saved to $filePath');
-
-  //   _detectEdges(filePath);
-  // }
 
   Padding _getBottomBar() {
     return Padding(

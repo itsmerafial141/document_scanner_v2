@@ -111,4 +111,11 @@ class DialogFunctions {
       Get.back();
     }
   }
+
+  static void closeBottomSheet() {
+    Get.closeAllSnackbars();
+    if (Get.isBottomSheetOpen!) {
+      Get.back();
+    }
+  }
 }

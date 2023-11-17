@@ -5,7 +5,8 @@ import 'package:document_scanner/app/core/enums/document_type_enum.dart';
 import 'package:document_scanner/app/core/extensions/document_extension.dart';
 import 'package:document_scanner/app/core/functions/dialog_function.dart';
 import 'package:document_scanner/app/core/helper/rx_nullabel.dart';
-import 'package:document_scanner/app/modules/camera_scanner/views/camera_scanner_view.dart';
+import 'package:document_scanner/app/modules/camera_scanner/enums/document_source_enum.dart';
+import 'package:document_scanner/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
@@ -171,7 +172,10 @@ class DocumentFormController extends GetxController {
     required DocumentType docType,
   }) {
     if (source == ImageSource.camera) {
-      Get.to(() => CameraScanner.fromCamera(docType: docType));
+      Get.toNamed(Routes.CAMERA_SCANNER, arguments: {
+        "documentType": docType,
+        "documentSource": DocumentSources.CAMERA,
+      });
     } else {
       _takePictureFromGallery(docType);
     }
@@ -184,11 +188,10 @@ class DocumentFormController extends GetxController {
     );
 
     if (xFile == null) return;
-    Get.to(() {
-      return CameraScanner.fromGrallery(
-        docType: docType,
-        imagePath: xFile.path,
-      );
+    Get.toNamed(Routes.CAMERA_SCANNER, arguments: {
+      "documentType": docType,
+      "documentSource": DocumentSources.CAMERA,
+      "imagePath": xFile.path,
     });
   }
 
